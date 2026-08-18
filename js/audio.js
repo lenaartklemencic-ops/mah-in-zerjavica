@@ -1,0 +1,10 @@
+(function(){
+  'use strict';
+  let ctx,master,muted=false,ambientTimer;
+  function init(){if(ctx)return;ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=.18;master.connect(ctx.destination);ambientTimer=setInterval(()=>{if(!muted&&Math.random()<.42)chirp()},2800)}
+  function tone(freq,duration,type='sine',volume=.25,slide=0){init();const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,ctx.currentTime);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,freq+slide),ctx.currentTime+duration);g.gain.setValueAtTime(volume,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+duration);o.connect(g);g.connect(master);o.start();o.stop(ctx.currentTime+duration)}
+  function noise(duration=.08,volume=.18){init();const n=ctx.sampleRate*duration,b=ctx.createBuffer(1,n,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const s=ctx.createBufferSource(),g=ctx.createGain();s.buffer=b;g.gain.value=volume;s.connect(g);g.connect(master);s.start()}
+  function chirp(){const f=900+Math.random()*500;tone(f,.07,'sine',.04,250);setTimeout(()=>tone(f+170,.06,'sine',.035,-90),90)}
+  const sounds={step:()=>tone(85,.035,'sine',.06,-25),chop:()=>{noise(.09,.28);tone(125,.08,'square',.12,-35)},mine:()=>{tone(620,.08,'square',.12,-260);setTimeout(()=>tone(330,.1,'square',.07,-120),45)},pickup:()=>{tone(440,.08,'sine',.13,220);setTimeout(()=>tone(720,.1,'sine',.1,160),75)},hit:()=>{noise(.1,.3);tone(100,.12,'sawtooth',.15,-55)},hurt:()=>tone(180,.2,'sawtooth',.18,-100),heal:()=>[0,80,160].forEach((t,i)=>setTimeout(()=>tone(420+i*120,.15,'sine',.1,80),t)),quest:()=>[0,120,250].forEach((t,i)=>setTimeout(()=>tone([392,523,659][i],.3,'sine',.11,30),t)),talk:()=>tone(260+Math.random()*45,.05,'square',.035,-15),level:()=>[0,90,180,300].forEach((t,i)=>setTimeout(()=>tone([330,440,550,740][i],.25,'triangle',.1,50),t))};
+  window.GameAudio={play(name){if(!muted&&sounds[name])sounds[name]()},toggle(){init();muted=!muted;master.gain.setTargetAtTime(muted?0:.18,ctx.currentTime,.02);return !muted},init};
+})();
