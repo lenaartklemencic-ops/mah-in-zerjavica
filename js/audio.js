@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   let ctx,master,musicBus,sfxBus,muted=false,timer,nextBeat=0,step=0,region='village';
-  const names={village:'Jutro v Jelšah',forest:'Pot pod zelenimi vejami',river:'Reka, ki pomni',mountain:'Kamniti veter',marsh:'Luči nad močvirjem',goblin:'Marš krivih škornjev',ruins:'Pepel starega kralja'};
+  const names={village:'Veter nad Jelšami',forest:'Šumenje Belega gaja',river:'Tok stare reke',mountain:'Prepih Sivih zob',marsh:'Noč nad močvirjem',goblin:'Oddaljeni goblinski tabor',ruins:'Tišina Perunovih ruševin'};
   const tracks={
     village:{bpm:104,key:57,lead:[0,4,7,4,2,5,9,7,0,4,7,11,9,7,4,2],bass:[0,null,0,null,5,null,7,null,0,null,0,null,5,null,7,null]},
     forest:{bpm:92,key:55,lead:[0,null,3,5,7,5,3,null,0,3,7,10,7,5,3,null],bass:[0,null,null,0,5,null,null,5,3,null,null,3,7,null,5,null]},
@@ -13,7 +13,7 @@
   };
   function init(){
     if(ctx){if(ctx.state==='suspended')ctx.resume();return}
-    ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();musicBus=ctx.createGain();sfxBus=ctx.createGain();master.gain.value=.3;musicBus.gain.value=.22;sfxBus.gain.value=.55;musicBus.connect(master);sfxBus.connect(master);master.connect(ctx.destination);nextBeat=ctx.currentTime+.08;timer=setInterval(schedule,90);schedule();
+    ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();musicBus=ctx.createGain();sfxBus=ctx.createGain();master.gain.value=.3;musicBus.gain.value=0;sfxBus.gain.value=.55;musicBus.connect(master);sfxBus.connect(master);master.connect(ctx.destination);nextBeat=ctx.currentTime+.08;
   }
   function env(time,duration,volume,bus){const g=ctx.createGain();g.gain.setValueAtTime(.0001,time);g.gain.exponentialRampToValueAtTime(volume,time+.025);g.gain.exponentialRampToValueAtTime(.0001,time+duration);g.connect(bus);return g}
   function noteFreq(midi){return 440*Math.pow(2,(midi-69)/12)}
