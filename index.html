@@ -15,7 +15,7 @@
 </div>
 <div id="mainMenu" class="main-menu hidden">
   <div class="menu-runes">ᛉ ᛏ ᛟ</div><small>SLOVENSKA GOZDNA PRIPOVED</small><h2>Mah in žerjavica</h2><p>Pet zgodb pod senco Triglava</p>
-  <div class="menu-actions"><button id="continueBtn">Nadaljuj</button><button id="loadBtn">Naloži igro</button><button id="menuNewBtn">Nova igra</button></div>
+  <div class="menu-actions"><button id="continueBtn">Nadaljuj</button><button id="visualDemoBtn">✦ Vizualni prototip</button><button id="loadBtn">Naloži igro</button><button id="menuNewBtn">Nova igra</button></div>
   <div id="saveSlots" class="save-slots hidden"></div>
 </div>
 <main class="game-shell">
@@ -48,6 +48,18 @@
   </section>
   <footer><span id="location">Jelševa jasa</span><span id="compass">Cilj: —</span><span>Samodejno shranjevanje</span></footer>
 </main>
-<script src="js/audio.js"></script><script src="js/game.js"></script>
+<section id="visualDemo" class="visual-demo hidden" aria-label="Vizualni prototip pri kozolcu">
+  <div class="visual-scene">
+    <img src="assets/visual-target/kozolec-storm-v1.png" alt="Arin na poti ob kozolcu med poletno nevihto">
+    <div class="cloud-shadow cloud-a"></div><div class="cloud-shadow cloud-b"></div>
+    <div class="sun-break"></div><div class="forest-mist"></div>
+    <canvas id="weatherCanvas" width="1536" height="1024"></canvas>
+    <div class="scene-vignette"></div>
+    <div class="scene-caption"><small>VIZUALNI PROTOTIP · ROB JELOVIŠKEGA GOZDA</small><h2>Ko se nebo razpre</h2><p>Dež pojenja. Nekje za smrekami zazveni rog.</p></div>
+    <div class="scene-tip">Opazuj luže, veter v krošnjah in globino dežja.</div>
+    <button id="closeVisualDemo" class="scene-close">Nazaj v igro <kbd>Esc</kbd></button>
+  </div>
+</section>
+<script src="js/audio.js"></script><script src="js/game.js"></script><script src="js/visual-scene.js"></script>
 </body>
 </html>
