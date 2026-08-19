@@ -2,56 +2,42 @@
 <html lang="sl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#121713">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10150f">
+  <meta name="description" content="Mah in žerjavica — slovenska gozdna pustolovščina.">
   <title>Mah in žerjavica</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main class="game-shell">
-    <header class="topbar">
-      <div class="brand"><span class="brand-mark">✦</span><div><h1>Mah in žerjavica</h1><p>zgodba iz doline Jelše</p></div></div>
-      <div class="top-actions"><button id="soundBtn" class="icon-btn" aria-label="Izklopi zvok">♫</button><button id="newBtn">Nova zgodba</button></div>
-    </header>
-
-    <section class="layout">
-      <div class="stage" id="stage">
-        <canvas id="game" width="960" height="600" aria-label="Igralni svet doline Jelše"></canvas>
-        <div class="vignette"></div>
-        <div id="toast" class="toast" aria-live="polite"></div>
-        <div id="prompt" class="prompt"></div>
-        <div id="dialogue" class="dialogue hidden" role="dialog" aria-modal="true">
-          <div id="portrait" class="portrait">B</div>
-          <div class="dialogue-copy"><strong id="speaker"></strong><p id="dialogueText"></p><span>Nadaljuj <kbd>E</kbd></span></div>
-        </div>
-        <div id="titleCard" class="title-card"><span>I. poglavje</span><strong>Tišina pod starim hrastom</strong></div>
-        <div id="death" class="death hidden"><h2>Megla te je vzela</h2><p>Dolina ti ponudi še eno jutro.</p><button id="wakeBtn">Zbudi se ob ognju</button></div>
-        <div class="mobile-controls" aria-label="Kontrole za dotik">
-          <div class="dpad"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div>
-          <div class="touch-actions"><button data-tap="interact">E</button><button data-tap="attack">⚔</button></div>
-        </div>
-      </div>
-
-      <aside class="hud">
-        <section class="hero-card">
-          <div class="hero-row"><div class="hero-avatar">A</div><div><strong>Arin</strong><span>varuh iskre · <b id="level">1</b>. raven</span></div></div>
-          <label>Življenje <output id="hpText">100 / 100</output></label><div class="meter health"><i id="hpBar"></i></div>
-          <label>Izkušnje <output id="xpText">0 / 40</output></label><div class="meter xp"><i id="xpBar"></i></div>
-        </section>
-
-        <nav class="tabs" aria-label="Stranski prikaz">
-          <button class="active" data-tab="bag">Nahrbtnik</button><button data-tab="skills">Veščine</button><button data-tab="quest">Dnevnik</button>
-        </nav>
-        <section id="bag" class="tab-panel active"><div id="inventory" class="inventory"></div><p class="hint">Klikni hrano, da jo poješ.</p></section>
-        <section id="skills" class="tab-panel"><div id="skillList" class="skill-list"></div></section>
-        <section id="quest" class="tab-panel"><div class="quest-head"><span>GLAVNA NALOGA</span><strong id="questTitle">Glas v megli</strong></div><p id="questText"></p><div id="objectives" class="objectives"></div></section>
-
-        <section class="controls"><strong>Kontrole</strong><p><kbd>WASD</kbd> premik · <kbd>E</kbd> dejanje<br><kbd>Space</kbd> napad · <kbd>1</kbd> pojej gobo</p></section>
-      </aside>
-    </section>
-    <footer><span id="location">Jelševa jasa</span><span>Napredek se samodejno shranjuje</span></footer>
-  </main>
-  <script src="js/audio.js"></script>
-  <script src="js/game.js"></script>
+<main class="game-shell">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✦</span><div><h1>Mah in žerjavica</h1><p>Kronike doline Jelše</p></div></div>
+    <div class="top-actions"><button id="mapBtn" title="Zemljevid (M)">⌖ <span>Zemljevid</span></button><button id="soundBtn" class="icon-btn" title="Glasba in zvok">♫</button><button id="newBtn">Nova zgodba</button></div>
+  </header>
+  <section class="layout">
+    <div class="stage" id="stage">
+      <canvas id="game" width="960" height="600" aria-label="Igralni svet doline Jelše"></canvas>
+      <div class="vignette"></div><div class="weather"></div>
+      <div id="toast" class="toast" aria-live="polite"></div><div id="prompt" class="prompt"></div>
+      <div id="objectivePin" class="objective-pin"><span>◆</span><div><small>TRENUTNI CILJ</small><strong id="pinText">Poišči vaško starešino Miro</strong></div></div>
+      <div id="dialogue" class="dialogue hidden" role="dialog" aria-modal="true"><div id="portrait" class="portrait">M</div><div class="dialogue-copy"><strong id="speaker"></strong><p id="dialogueText"></p><span><kbd>E</kbd> nadaljuj</span></div></div>
+      <div id="mapOverlay" class="map-overlay hidden"><div class="map-head"><div><small>POHODNIKOV ZEMLJEVID</small><strong>Dolina Jelše</strong></div><button id="closeMap">Zapri <kbd>M</kbd></button></div><canvas id="map" width="720" height="420" aria-label="Zemljevid sveta"></canvas><div class="map-legend"><span><i class="you"></i> Arin</span><span><i class="goal"></i> cilj</span><span><i class="town"></i> naselje</span><span><i class="danger"></i> nevarnost</span></div></div>
+      <div id="titleCard" class="title-card"><span>II. poglavje</span><strong>Tri barve prepira</strong><p>Dolina je večja, kot si jo pomnil.</p></div>
+      <div id="death" class="death hidden"><h2>Megla te je vzela</h2><p>Dolina ti ponudi še eno jutro.</p><button id="wakeBtn">Zbudi se ob ognju</button></div>
+      <div class="mobile-controls" aria-label="Kontrole za dotik"><div class="dpad"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div><div class="touch-actions"><button data-tap="interact">E</button><button data-tap="attack">⚔</button></div></div>
+    </div>
+    <aside class="hud">
+      <section class="hero-card"><div class="hero-row"><div class="hero-avatar">A</div><div><strong>Arin</strong><span>potepuh doline · <b id="level">1</b>. raven</span></div><div id="coins" class="coins">● 0</div></div><label>Življenje <output id="hpText">100 / 100</output></label><div class="meter health"><i id="hpBar"></i></div><label>Izkušnje <output id="xpText">0 / 40</output></label><div class="meter xp"><i id="xpBar"></i></div></section>
+      <nav class="tabs" aria-label="Stranski prikaz"><button class="active" data-tab="bag">Nahrbtnik</button><button data-tab="skills">Veščine</button><button data-tab="quest">Dnevnik</button></nav>
+      <section id="bag" class="tab-panel active"><div id="inventory" class="inventory"></div><div id="itemDetail" class="item-detail"><span>Izberi predmet</span><small>Predmeti, ki jih najdeš, se pojavijo tukaj.</small></div></section>
+      <section id="skills" class="tab-panel"><div id="skillList" class="skill-list"></div></section>
+      <section id="quest" class="tab-panel"><div class="quest-head"><span>AKTIVNA NALOGA</span><strong id="questTitle">Tri barve prepira</strong></div><p id="questText"></p><div id="objectives" class="objectives"></div></section>
+      <section class="music-card"><span>♫ ZDAJ IGRA</span><strong id="trackName">Jutro v Jelšah</strong></section>
+      <section class="controls"><strong>Kontrole</strong><p><kbd>WASD</kbd> premik · <kbd>E</kbd> dejanje · <kbd>Space</kbd> napad<br><kbd>M</kbd> zemljevid · <kbd>1</kbd> pojej gobo</p></section>
+    </aside>
+  </section>
+  <footer><span id="location">Jelševa jasa</span><span id="compass">Cilj: —</span><span>Samodejno shranjevanje</span></footer>
+</main>
+<script src="js/audio.js"></script><script src="js/game.js"></script>
 </body>
 </html>
