@@ -9,10 +9,19 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="loadingScreen" class="loading-screen">
+  <div class="sun-wheel"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b>✦</b></div>
+  <div class="loading-copy"><small>KRONIKE DOLINE JELŠE</small><h2>Mah in žerjavica</h2><p id="loadingTip">Namig: v gorah poslušaj kamen. Škrati pravijo, da votla skala skriva pot.</p><div class="loading-bar"><i></i></div></div>
+</div>
+<div id="mainMenu" class="main-menu hidden">
+  <div class="menu-runes">ᛉ ᛏ ᛟ</div><small>SLOVENSKA GOZDNA PRIPOVED</small><h2>Mah in žerjavica</h2><p>Pet zgodb pod senco Triglava</p>
+  <div class="menu-actions"><button id="continueBtn">Nadaljuj</button><button id="loadBtn">Naloži igro</button><button id="menuNewBtn">Nova igra</button></div>
+  <div id="saveSlots" class="save-slots hidden"></div>
+</div>
 <main class="game-shell">
   <header class="topbar">
     <div class="brand"><span class="brand-mark">✦</span><div><h1>Mah in žerjavica</h1><p>Kronike doline Jelše</p></div></div>
-    <div class="top-actions"><button id="mapBtn" title="Zemljevid (M)">⌖ <span>Zemljevid</span></button><button id="soundBtn" class="icon-btn" title="Glasba in zvok">♫</button><button id="newBtn">Nova zgodba</button></div>
+    <div class="top-actions"><button id="mapBtn" title="Zemljevid (M)">⌖ <span>Zemljevid</span></button><button id="soundBtn" class="icon-btn" title="Glasba in zvok">♫</button><button id="menuBtn">☰ <span>Meni</span></button></div>
   </header>
   <section class="layout">
     <div class="stage" id="stage">
@@ -24,6 +33,7 @@
       <div id="mapOverlay" class="map-overlay hidden"><div class="map-head"><div><small>POHODNIKOV ZEMLJEVID</small><strong>Dolina Jelše</strong></div><button id="closeMap">Zapri <kbd>M</kbd></button></div><canvas id="map" width="720" height="420" aria-label="Zemljevid sveta"></canvas><div class="map-legend"><span><i class="you"></i> Arin</span><span><i class="goal"></i> cilj</span><span><i class="town"></i> naselje</span><span><i class="danger"></i> nevarnost</span></div></div>
       <div id="titleCard" class="title-card"><span>II. poglavje</span><strong>Tri barve prepira</strong><p>Dolina je večja, kot si jo pomnil.</p></div>
       <div id="death" class="death hidden"><h2>Megla te je vzela</h2><p>Dolina ti ponudi še eno jutro.</p><button id="wakeBtn">Zbudi se ob ognju</button></div>
+      <div id="questReward" class="quest-reward hidden"><small>NALOGA OPRAVLJENA</small><h2 id="rewardTitle">Tri barve prepira</h2><div class="reward-seal">✦</div><p id="rewardText"></p><button id="rewardBtn">Nadaljuj pot</button></div>
       <div class="mobile-controls" aria-label="Kontrole za dotik"><div class="dpad"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div><div class="touch-actions"><button data-tap="interact">E</button><button data-tap="attack">⚔</button></div></div>
     </div>
     <aside class="hud">
@@ -33,7 +43,7 @@
       <section id="skills" class="tab-panel"><div id="skillList" class="skill-list"></div></section>
       <section id="quest" class="tab-panel"><div class="quest-head"><span>AKTIVNA NALOGA</span><strong id="questTitle">Tri barve prepira</strong></div><p id="questText"></p><div id="objectives" class="objectives"></div></section>
       <section class="music-card"><span>♫ ZDAJ IGRA</span><strong id="trackName">Jutro v Jelšah</strong></section>
-      <section class="controls"><strong>Kontrole</strong><p><kbd>WASD</kbd> premik · <kbd>E</kbd> dejanje · <kbd>Space</kbd> napad<br><kbd>M</kbd> zemljevid · <kbd>1</kbd> pojej gobo</p></section>
+      <section class="controls"><strong>Kontrole</strong><p><kbd>WASD</kbd> premik · <kbd>E</kbd> dejanje · drži <kbd>Space</kbd> napad<br><kbd>M</kbd> zemljevid · <kbd>Esc</kbd> meni · <kbd>1</kbd> pojej gobo</p></section>
     </aside>
   </section>
   <footer><span id="location">Jelševa jasa</span><span id="compass">Cilj: —</span><span>Samodejno shranjevanje</span></footer>
