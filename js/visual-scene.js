@@ -6,7 +6,7 @@
   if (!overlay || !openBtn || !closeBtn || !canvas) return;
 
   const ctx = canvas.getContext('2d');
-  const drops = Array.from({ length: 145 }, (_, i) => ({
+  const drops = Array.from({ length: 54 }, (_, i) => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     z: .25 + Math.random() * .75,
@@ -14,7 +14,7 @@
     seed: i * 7.31
   }));
   const ripples = [];
-  const leaves = Array.from({ length: 13 }, () => ({
+  const leaves = Array.from({ length: 5 }, () => ({
     x: Math.random() * canvas.width,
     y: 80 + Math.random() * 700,
     size: 3 + Math.random() * 7,
@@ -37,7 +37,7 @@
     elapsed += dt;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const easingRain = Math.max(.22, 1 - elapsed / 38);
+    const easingRain = Math.max(.16, .48 - elapsed / 90);
     ctx.lineCap = 'round';
     for (const d of drops) {
       d.y += d.speed * d.z * dt * easingRain;
