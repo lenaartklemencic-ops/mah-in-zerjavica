@@ -28,6 +28,10 @@
     <div class="stage" id="stage">
       <canvas id="game" width="960" height="600" aria-label="Igralni svet doline Jelše"></canvas>
       <div class="vignette"></div><div class="weather"></div>
+      <button id="minimapOpen" class="minimap-frame" title="Odpri zemljevid (M)" aria-label="Odpri veliki zemljevid">
+        <canvas id="minimap" width="184" height="184" aria-label="Mini zemljevid bližnje okolice"></canvas>
+        <span class="minimap-compass">S</span><strong id="minimapName">Jelševa vas</strong>
+      </button>
       <div id="toast" class="toast" aria-live="polite"></div><div id="prompt" class="prompt"></div>
       <div id="objectivePin" class="objective-pin"><span>◆</span><div><small>TRENUTNI CILJ</small><strong id="pinText">Poišči vaško starešino Miro</strong></div></div>
       <div id="dialogue" class="dialogue hidden" role="dialog" aria-modal="true"><div id="portrait" class="portrait">M</div><div class="dialogue-copy"><strong id="speaker"></strong><p id="dialogueText"></p><span><kbd>E</kbd> nadaljuj</span></div></div>
