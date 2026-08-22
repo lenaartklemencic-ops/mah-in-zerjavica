@@ -20,3 +20,11 @@ dinamično vreme in izvirno proceduralno glasbo z vodilnim godalnim glasom.
 
 Igra ne potrebuje namestitve ali zunanjih knjižnic. Odpri `index.html` oziroma
 obišči objavljeno spletno stran.
+
+## Zasebnost javnega prototipa
+
+- Igra nima uporabniških računov, baze, analitike ali obrazcev.
+- Samodejni napredek je shranjen samo v `sessionStorage` trenutnega zavihka.
+- Ročne shranjene reže so samo v `localStorage` igralčevega brskalnika.
+- Save podatki se ne pošiljajo na strežnik in niso dostopni drugim igralcem.
+- Nov zavihek začne novo, ločeno sejo; vsak obiskovalec igra svojo kopijo igre.
