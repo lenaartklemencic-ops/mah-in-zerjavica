@@ -21,7 +21,9 @@ for (const cave of ['velesCave', 'kresnikSewer', 'matjazCave', 'ajdTomb', 'troll
 for (const tier of ['ironSword', 'steelSword', 'blackSword', 'mithrilSword', 'adamantSword', 'runeSword', 'dragonSword'])
   check(`weapon tier: ${tier}`, game.includes(tier));
 
-check('new folklore atlas', game.includes('world-v4-folklore-atlas.png'));
+check('unified vector art', !game.includes('world-v4-folklore-atlas.png') && game.includes('const cityPlots='));
+check('validated building collisions', game.includes('for(const h of cityPlots)'));
+check('continuous hydrology', game.includes('drawHydrology()'));
 check('spam-hit combat', game.includes("keys[' ']"));
 check('hit sound', game.includes("A.play('hit')"));
 check('save slots', game.includes("'mah-save-'"));
